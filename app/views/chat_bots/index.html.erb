@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .chat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .chat-messages {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    .chat-messages__content {
+      padding: 10px;
+      min-height: 100px;
+    }
+    .chat-input {
+      display: flex;
+      align-items: center;
+    }
+    .chat-form__input {
+      flex: 1;
+      margin-right: 10px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .chat-form__submit {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    .container {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Чат-бот Форум</h1>
+
+  <div class="chat">
+    <div class="chat-messages">
+      <div class="chat-messages__content" id="messages">
+        <p id="bot-response"></p>
+        </div>
+    </div>
+    <div class="chat-input">
+      <div id="chat-bot-form">
+        <%= form_tag({controller: "chat_bots", action: "index"}, method: "get", remote: true, class: "form") do %>
+          <div class="bot">
+            <%= text_field_tag 'message' %> 
+            <%= submit_tag "Задать вопрос", id: "ask-bot", class: "chat-form__submit btn btn-primary"%>
+         </div>
+      </div>
+    <% end %>
+    
+    </div>
+  </div>
+
+</body>
+</html>

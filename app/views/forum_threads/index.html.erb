@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="pull-right">
+    <%= link_to "Создать тему", new_forum_thread_path, class: "btn btn-primary" %>
+  </div>
+  <div class="pull-right" style="margin-right: 10px">
+    <%= search_form_for @q, html: { class: "form-inline" } do |f| %>
+      <%= f.search_field :subject, placeholder: "Поиск...", class: "form-control" %>
+      <%= f.submit "Найти", class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+  <h1 class="page-header">Темы форума</h1>
+
+  <%= form_with(url: forum_threads_path, method: 'get', id: 'forum_thread_form') do |form| %>
+    <div class="field">
+      <%= form.label :forum_category_id, "Выбор категорий: " %>
+      <div class="select-wrapper">
+        <%= form.collection_select :forum_category_id, ForumCategory.all, :id, :name, prompt: "Все", class: "form-select form-select-sm" %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= form.submit "Найти", class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+  
+
+  <% p "SSSSSSSSSSSSSSSSSS" %>
+  <% p @threads %>
+  <div id="forum_threads">
+    <%= render partial: 'forum_thread', locals: { forum_threads: @threads } %>
+  </div>
+
+</div>

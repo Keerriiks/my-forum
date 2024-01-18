@@ -1,0 +1,41 @@
+
+
+<header class="navbar <%= content_for?(:navbar_style) ? yield(:navbar_style) : "navbar-default" %> navbar-static-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_url, class: "navbar-brand" do %>
+        Форум
+      <% end %>
+      <%= link_to "Чат-бот", chat_bots_path, class: "navbar-brand" %>
+      
+      <% if current_user && (current_user.role == "admin" || current_user.role == "moder") %>
+      
+        <div class="dropdown">
+          <button class="dropbtn navbar-brand">  Инструменты </button>
+          <div class="dropdown-content">
+            <%= link_to "Пользователи", all_users_path, class: "dropdown-item" %>
+            <%= link_to "Логи", logs_path, class: "dropdown-item" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Мой профиль", edit_user_registration_path %></li>
+          <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Регистрация", new_user_registration_path %></li>
+          <li><%= link_to "Войти", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,12 @@
+<br>
+<br>
+<% if forum_threads.present? %>
+    <div class="threads-forum">
+        <% forum_threads.each do |thread| %>
+            <%= link_to thread.subject, forum_thread_path(thread), class: "forum-thread-link" %>
+            <br>
+        <% end %> 
+    </div>
+<% else %>
+  <p>По вашему запросу ничего не найдено.</p>
+<% end %>

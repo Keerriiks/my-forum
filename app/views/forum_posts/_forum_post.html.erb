@@ -1,0 +1,6 @@
+<%= content_tag :div, class: "forum-post", id: "forum-post-#{forum_post.id}" do %>
+    <%= content_tag :p, class: "text-muted" do %>
+        Когда создан: <%= forum_post.created_at %>
+    <% end %>
+    <%= content_tag :p, forum_post.body %>
+<% end %>

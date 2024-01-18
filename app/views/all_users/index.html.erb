@@ -1,0 +1,40 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Email</th>
+      <th scope="col">Создан</th>
+      <th scope="col">Обновлен</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Курс</th>
+      <th scope="col">Роль</th>
+      <th scope="col">Никнейм</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+        <tr data-user-id=<%=user.id%>>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.updated_at %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.course %></td>
+        <td class="role"><%= user.role %></td>
+        <td><%= user.nickname %></td>
+        <td>
+          <%= link_to "Удалить", delete_account_user_path(:id => user.id), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger btn-sm' %>
+          <div class="dropdown-ut">
+            <button class="btn btn-primary dropbtn-u btn-smt"> Изменить роль</button>
+            <div class="dropdown-content-ut">
+              <button id="moderator-link"> Модератор</button>
+              <button id="user-link"> Пользователь</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

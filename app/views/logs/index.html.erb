@@ -1,0 +1,10 @@
+<h1>Логи сервера</h1>
+<div style="height: 300px; overflow-y: scroll;">
+  <pre>
+    <% logs_array = @logs.split("\n") %>
+    <% last_10_logs = logs_array.last(10) %>
+    <% last_10_logs.each do |log| %>
+      <%= log %><br>
+    <% end %>
+  </pre>
+</div>
